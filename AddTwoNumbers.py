@@ -87,16 +87,4 @@ def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         list_2 = convertList(l2)
         print(list_1, list_2)
 
-print(convertList(self=None, l1=[2, 3, 4], l2=[5, 6, 4]))
-
-"""
-1. Issues
-    - Currently receiving these errors:
-        a. print(addTwoNumbers(None, [2, 3, 4], [5, 6, 4]))
-        b. list_1 = convertList(l1)
-        c. len = find_length(head)
-        d. curr = curr.next
-        e. AttributeError: 'list' object has no attribute 'next'
-    - I believe the issue is that the lists that are being passed through,
-
-"""
+print(convertList(None, [2, 3, 4], [5, 6, 4]))
