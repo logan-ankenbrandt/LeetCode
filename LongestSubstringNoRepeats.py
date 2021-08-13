@@ -33,13 +33,22 @@ def lengthOfLongestSubstring(s) -> int:
                     i. Enumerate all possible substrings, check if the substring has repeating
                     characters, and return the longest substring without repeating characters.
                 b. Steps
-                    i. Enumerate all the substrings
-                    ii. Check if the substring has repeating characters and update the
-                    result.
-                        - Use a direct access table to count the occurence of each 
-                        character.
-                            a. Set the table to 128 characters to account for any possible
-                            character.
+                    i. Get the length of the string for indexing
+                    ii. Within two for loops:
+                        a. Initialize the index of the string with the length you
+                        attained earlier
+                        b. Use the for loops to create seperate variables to compare substrings
+                        against.
+                        c. Define a check function to check for duplicates within every possible substrings
+                            i. Set a chars variable to be an empty list with every possible
+                            characters that could be in the string
+                            ii. Loop through the start and end of every substring, acquired as
+                            the variables attained in the two previous for loops, to 
+                                - List out all possible substrings and set it to the variable "c".
+                                - Keep count of the number of occurences of each character in the substring, i.e. counting 
+                                duplicates, by using the ord() function to convert each character to its ASCII value.
+                        d. Return the length of the longest substring by using the max() function
+
         4. Issues:
             - Having issues comparing values:
                 a. Currently, this function creates an array of 
