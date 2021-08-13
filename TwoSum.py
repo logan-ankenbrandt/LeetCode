@@ -36,3 +36,5 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
                     # numbers together, and target is used to compare the sum to the
                     # target number
                     return [i, j]
+
+print(twoSum(None, [2, 7, 11, 15], 9))
