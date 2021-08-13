@@ -25,6 +25,12 @@ def reverse(x) -> int:
                     i. 0
         3. Implementation
             - Loop through the integer and append it to a list
+            - Next:
+                a. Loop through the list
+                b. Write if statements to cover the edge cases
+                c. Reverse the list
+                d. Join the list into a string
+                e. Return the string
             
         """
         
