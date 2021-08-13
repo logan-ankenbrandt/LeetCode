@@ -24,11 +24,15 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
                 a. Iterate through the array, adding each element to the other, and keep
                 track of the indexes of the numbers
         """
-        ans = []
         for i in range(len(nums)):
-            for j in nums:
-                if i + j == target:
-                    # currently having difficulties accessing
-                    # the index of the requested numbers
-                    print(nums[i], nums[j])
-        return ans
+            # In this for loop, len is used to count the elements in the list,
+            # and the range is used to create an index of the list to iterate through
+            for j in range(i + 1, len(nums)):
+                # In this for loop, len is used to count the elements in the list,
+                # i + 1 is used to indicate which index the newly initialized variable
+                # j will be assigned, and range is used to define the index
+                if nums[i] + nums[j] == target:
+                    # In this if statement, nums[i] + nums[j] is used to add the two
+                    # numbers together, and target is used to compare the sum to the
+                    # target number
+                    return [i, j]
