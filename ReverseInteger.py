@@ -38,25 +38,34 @@ def reverse(x) -> int:
         integers_list = []
         for i in integers:
             integers_list.append(i)
-            
-        
 
-        for i in integers_list:
-            if integers_list[0] == '-':
-                integers_list.pop(0)
-                integers_list.reverse()
-                integers_list = ['-'] + integers_list
-                integers = ''.join(integers_list)
-            elif integers_list[-1] == '0':
-                integers_list.pop()
-                integers_list.reverse()
-                integers = ''.join(integers_list)
-                print(integers)
-            elif len(integers_list) == 1:
-                integers = ''.join(integers_list)
-            else:
-                integers_list.reverse()
-                integers = ''.join(integers_list)
+
+        
+        if integers_list[0] == '0':
+            return 0
+        elif integers_list[0] == '-' and integers_list[-1] == '0':
+            integers_list.pop(0)
+            integers_list.reverse()
+            while '0' in integers_list[0]:
+                integers_list.remove('0')
+            integers_list = ['-'] + integers_list
+            integers = ''.join(integers_list)
+        if integers_list[-1] == '0':
+            integers_list.reverse()
+            integers = ''.join(integers_list)
+            integers = integers.strip('0')
+        elif integers_list[0] == '-' and integers_list[-1] != '0':
+            integers_list.pop(0)
+            integers_list.reverse()
+            integers_list = ['-'] + integers_list
+            integers = ''.join(integers_list)
+        elif len(integers_list) == 1:
+            integers = integers_list[0]
+        elif len(integers_list) == 10:
+            return 0
+        else:
+            integers_list.reverse()
+            integers = ''.join(integers_list)
         return integers
 
-print(reverse(120))
+print(reverse(-901000))
