@@ -29,12 +29,15 @@ def plusOne(digits: List[int]) -> List[int]:
                 e. Convert the integer back to a string.
                 f. Convert the string back to a list of integers.
         """
-        strings = [str(integer) for integer in digits]
+        strings = []
+        for integer in digits:
+            strings.append(str(integer))
         a_string = "".join(strings)
         an_integer = int(a_string)
         final_value = an_integer + 1
         string_again = str(final_value)
-        splitted = string_again.split()
-        integers = [int(integer) for integer in string_again]
+        integers = []
+        for strings in string_again:
+            integers.append(int(strings))
         return integers
 print(plusOne([1, 2, 3]))
