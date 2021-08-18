@@ -1,6 +1,7 @@
 from typing import List
+import snoop
 
-
+@snoop
 def maximumWealth(accounts: List[List[int]]) -> int:
         """
         1. Goal
@@ -19,3 +20,5 @@ def maximumWealth(accounts: List[List[int]]) -> int:
         for i in accounts:
             res.append(sum(i))
         return max(res)
+
+print(maximumWealth([[1,2,3],[4,5,6],[7,8,9]]))

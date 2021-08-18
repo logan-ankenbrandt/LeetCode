@@ -32,7 +32,6 @@ def runningSum(nums: List[int]) -> List[int]:
                 e. Add each element to the currSum variable on each                 pass
                 f. Store the new element in the res array
         """
-        prevK = collections.defaultdict(lambda : 0)
         res = []
         currSum = 0
         for i in range(0, len(nums)):
