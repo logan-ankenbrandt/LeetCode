@@ -65,10 +65,14 @@ class LRUCache(OrderedDict):
                     a dictionary, use OrderedDict
             - Issue #2
                 a. Description
-                    i. Did not realize that by setting OrderedDict()
+                    i. Did not realize that by setting OrderedDict() as the 
+                    parameter in the Class definition, the dictionary would
+                    automatically be initialized
                 b. Resolution
-
-
+                    i. Learned that when I need to initialize a data structure
+                    in Object-Oriented Programming, sometimes the resolution 
+                    might be to use a pre-built function to initialize it in the
+                    class definition.
     """
 
     def __init__(self, capacity):
