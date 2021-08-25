@@ -17,7 +17,7 @@ class MyQueue:
                 v. "pop" -> myQueue.pop() -> 1, [2] -> Removes the value from the front of the queue
                 and returns it
                 vi. "empty" -> myQueue.empty() -> false, [2] -> Checks if the array is empty and returns a boolean
-    1. Implementation
+    3. Implementation
         - Issues
         - Steps
             a. Initialize the data variable in the constructor & set it to
