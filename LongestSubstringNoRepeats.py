@@ -1,111 +1,89 @@
-def lengthOfLongestSubstring(s) -> int:
-        """
-        1. Goal
-            - Find the longest substring, so string within a string, without repeating characters.
-        2. Examples
-            - Example #1
-                a. Input
-                    i. s = "abcabcbb"
-                b. Output
-                    i. 3
-                c. Explanation
-                    i. The answer is "abc" with a length of 3
-                    ii. In 'abca', there would be multiple 'a' values
-            - Example #2
-                a. Input
-                    i. s = "bbbbb"
-                b. Output
-                    i. 1
-                c. Explanation
-                    i. The answer is "b" with a length of 1
-            - Example #3
-                a. Input
-                    i. s = "pwwkew"
-                b. Output
-                    i. 3
-                c. Explanation
-                    i. The answer is "wke", with the length of 3.
-                    Notice that the answer must be a substring, "pwke" is a 
-                    subsequence and not a substring.
-        3. Implementation
-            - Brute Force
-                a. Summary
-                    i. Enumerate all possible substrings, check if the substring has repeating
-                    characters, and return the longest substring without repeating characters.
-                b. Steps
-                    i. Get the length of the string for indexing
-                    ii. Within two for loops:
-                        a. Initialize the index of the string with the length you
-                        attained earlier
-                        b. Use the for loops to create seperate variables to compare substrings
-                        against.
-                        c. Define a check function to check for duplicates within every possible substrings
-                            i. Set a chars variable to be an empty list with every possible
-                            characters that could be in the string
-                            ii. Loop through the start and end of every substring, acquired as
-                            the variables attained in the two previous for loops, to 
-                                - List out all possible substrings and set it to the variable "c".
-                                - Keep count of the number of occurences of each character in the substring, i.e. counting 
-                                duplicates, by using the ord() function to convert each character to its ASCII value.
-                        d. Return the length of the longest substring by using the max() function
+import itertools
+from collections import Counter
 
-        4. Issues:
-            - Having issues comparing values:
-                a. Currently, this function creates an array of 
-                duplicates and counts the amount of items in that 
-                array.
-                b. I need to initialize a count value, start comparing
-                the values at the beginning of the list, increment the count for
-                each value that has not been seen, stop the count when a duplicate is found,
-                and initialize a new count when a non-duplicate is found.
-        """
-        def check(start, end):
-            chars = [0] * 128
-            for i in range(start, end + 1):
-                """
-                This loop is used to list all possible substrings
-                """
-                c = s[i]
-                """
-                The c variable is used to list out all substrings
-                """
-                chars[ord(c)] += 1
-                """
-                The above statement is used to keep count of the number of occurences of each
-                character in each substring.
-                ord() is used to convert the character to its ASCII value - used to check for
-                duplicates.
-                """
-                if chars[ord(c)] > 1:
-                    """
-                    If there are no duplicates, return false
-                    """
-                    return False
-            return True
-            """
-            Default is that there are duplicates, so it is set to true
-            """
-        
-        n = len(s)
-        res = 0
-
-        for i in range(n):
-            """
-            i == index of array
-            """
-            for j in range(i, n):
-                """
-                j == the iterative index of array
-                j is the value that is creating all of the substrings
-                """
-                if check(i, j):
-                    """
-                    If check returns true, then perform the below operations
-                    """
-                    res = max(res, j - i + 1)
-                    """
-                    Sets the maximum value to this variable with the max() function
-                    """
-        return res
-
-print(lengthOfLongestSubstring("abcabcbb"))
+def lengthOfLongestSubstring(self, s: str) -> int:
+    """
+    1. Goal
+        - Find the longest substring without repeating characters
+        and return its length
+    2. Examples
+        - Example #1
+            a. Input
+                i. s = "abcabcbb"
+            b. Output
+                i. 3
+            c. Explanation
+                i. The answer is "abc", with the length of 3.
+        - Example #2
+            a. Input
+                i. s = "bbbbb"
+            b. Output
+                i. 1
+            c. Explanation
+                i. The answer is "b", with the length of 1.
+        - Example #3
+            a. Input
+                i. s = "pwwkew"
+            b. Output
+                i. 3
+            c. Explanation
+                i. The answer is "wke", with the length of 3.
+                Notice that the answer must be a substring,
+                "pwke" is a subsequence and not a substring.
+    3. Implementation
+        - Issues
+            a. How do I identify all of the substrings in a string with a
+            hash table?
+            b. How do I keep track of duplicates within substrings?
+                ii. How can you go over the entire list of substrings
+                to remove the substrings that contain duplicates?
+                    - Currently, receiving an error when I try to remove
+                    a substring from the substrings array
+        - Steps
+            a. Use itertools.combinations() within a for loop to find
+            substrings and store it in a variable
+            b. Use Counter() on each substring to identify duplicates
+            c. Write a for loop to loop over the values in curr
+            d. Write a conditional within the loop that checks if the value
+            is greater than 1
+                i. If it is, the string is appended to a duplicates list
+            e. Write a for loop to loop over the substrings list
+            f. Write a conditional within the loop that checks that the
+            string is not in the duplicates list
+                i. If it is not, the string is appended to the final list
+            g. Find the length of the largest string within the final list
+            h. Return the length of the largest string
+        - Summary
+            a. Used itertools.combinations() to identify all substrings,
+            looped over the substrings list & created a dictionary with 
+            the characters within the substring as the key and the number
+            of times the character appears within the substring as the value,
+            looped over the dictionary to add duplicate values to a list,
+            looped over substrings again to find the substrings that had no
+            duplicated, found the length of the largest string and returned its
+            length.
+        - Complexity Analysis
+            a. Time Complexity: O(N^2)
+                - Where N is the length of the string
+            b. Space Complexity: O(N)
+                - Where N is the length of the string
+        - Is this optimized?
+            a. No
+    """
+    if len(s) == 0:
+            return 0
+    substrings = []
+    for x, y in itertools.combinations(range(len(s) + 1), r=2):
+        substrings.append(s[x:y])
+    duplicates = []
+    for i in substrings:
+        curr = Counter(i)
+        for values in curr.values():
+            if values != 1:
+                duplicates.append(i)
+    unique = []
+    for i in substrings:
+        if i not in duplicates:
+            unique.append(i)
+    m = max(unique, key=len)
+    return len(list(m))
